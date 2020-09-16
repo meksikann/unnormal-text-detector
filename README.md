@@ -1,8 +1,17 @@
 # unnormal-text-detector
 python Server to check set of sentences for unormality
- #dev
- pip install -r requirements.txt
- uvicorn server.main:app --reload
+##install
+ ```pip install -r requirements.txt```
 
- http://127.0.0.1:8000/docs
+## start ASGI server (uvicorn)
+
+```
+uvicorn server.main:app --reload
+```
+
+##See Docs
+```
+http://127.0.0.1:8000/docs
+```
+ 
 
