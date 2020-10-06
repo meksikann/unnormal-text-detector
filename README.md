@@ -15,3 +15,11 @@ http://127.0.0.1:8000/docs
 ```
  
 
+##Test
+```
+curl --location --request POST 'http://127.0.0.1:8000/api/language_check' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "text":"This idwds a test for language check server"
+}'
+```

@@ -9,9 +9,9 @@ app = FastAPI(title='Sentence check server', version='1')
 @app.on_event('startup')
 async def init_detector():
     print('Language check initialization started')
-    from server.api.endpoints.detect import check_language
+    from server.api.endpoints.detect import detect_errors
 
-    await check_language('text init')
+    detect_errors('text init')
     print('Language check initialization finished')
 
 

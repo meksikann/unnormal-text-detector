@@ -1,27 +1,30 @@
 from pytictoc import TicToc
 import language_tool_python
 from fastapi import APIRouter
+from pydantic import BaseModel
 
-# from pydantic import BaseModel
-# from typing import List
+# request body class
+class DetectRequest(BaseModel):
+    text: str
 
 timer = TicToc()
 tool = language_tool_python.LanguageTool('en-US')
 detect_router = APIRouter()
 
-good_text = '[CWD-120] I was working on bug fixing due to the ticketяя created'
+
+def detect_errors(text):
+    return tool.check(text)
 
 
-@detect_router.get('/language_check/{text}')
-async def check_language(text):
+@detect_router.post('/language_check')
+async def check_language(item: DetectRequest):
+    text = item.text
+
     timer.tic()
-    matches = tool.check(text)
+    matches = detect_errors(text)
     timer.toc('Text check took:')
-
-    feedback = ''
 
     for match in matches:
         print(match.ruleId)
-        feedback += "" + match.ruleId
 
-    return feedback
+    return matches
